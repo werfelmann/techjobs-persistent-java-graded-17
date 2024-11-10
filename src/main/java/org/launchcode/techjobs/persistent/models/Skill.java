@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 public class Skill extends AbstractEntity {
 
     @NotNull
-    @Size(max=255)
+    @Size(min=5, max=255, message="Description must be between 5 and 255 characters.")
     private String description;
 
     public Skill() {}
