@@ -61,15 +61,17 @@ public class HomeController {
             return "add";
         }
 
-        Optional<Employer> optionalEmployer = employerRepository.findById(employerId);
-        if (!optionalEmployer.isPresent()) {
-                model.addAttribute("error", "Invalid Employer ID");
-            return "add";
-        }
+//        Optional<Employer> optionalEmployer = employerRepository.findById(employerId);
+//        if (!optionalEmployer.isPresent()) {
+//                model.addAttribute("error", "Invalid Employer ID");
+//            return "add";
+//        }
+
+        Employer employer = employerRepository.findById(employerId).orElse(new Employer());
 
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
 
-        newJob.setEmployer(optionalEmployer.get());
+        newJob.setEmployer(employer);
         newJob.setSkills(skillObjs);
         jobRepository.save(newJob);
 
